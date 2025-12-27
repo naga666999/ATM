@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nexus Holographic ATM</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="atm-dashboard">
+      <div class="dashboard-left">
+        <div class="brand-header">
+          <i class="fas fa-satellite-dish animate-pulse"></i> Milky Way
+          <span class="gradient-text">GALAXY BANK</span>
+        </div>
+
+        <div class="screen-interface-wrapper">
+          <div class="side-buttons">
+            <button class="action-btn" data-action="balance">
+              Check Balance
+            </button>
+            <button class="action-btn" data-action="deposit">
+              Deposit Money
+            </button>
+            <button class="action-btn" data-action="withdraw">
+              Withdraw Cash
+            </button>
+            <div class="spacer"></div>
+            <button class="action-btn back-btn" data-action="back">
+              Go Back
+            </button>
+            <button class="action-btn exit-btn" data-action="exit">
+              Exit / Eject
+            </button>
+          </div>
+
+          <div class="digital-screen">
+            <div class="scan-line"></div>
+            <div class="screen-content" id="screen-content">
+              <h2 class="animate-pulse">SYSTEM READY</h2>
+              <p>Please Insert Card or Enter PIN</p>
+              <div class="pin-display" id="pin-display">_ _ _ _</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dashboard-right">
+        <div class="panel-label">SECURE INPUT</div>
+
+        <div class="keypad-grid">
+          <button class="key" onclick="pressKey('1')">1</button>
+          <button class="key" onclick="pressKey('2')">2</button>
+          <button class="key" onclick="pressKey('3')">3</button>
+          <button class="key" onclick="pressKey('4')">4</button>
+          <button class="key" onclick="pressKey('5')">5</button>
+          <button class="key" onclick="pressKey('6')">6</button>
+          <button class="key" onclick="pressKey('7')">7</button>
+          <button class="key" onclick="pressKey('8')">8</button>
+          <button class="key" onclick="pressKey('9')">9</button>
+          <button class="key action-clear" onclick="pressKey('clear')">
+            CLR
+          </button>
+          <button class="key" onclick="pressKey('0')">0</button>
+          <button class="key action-enter" onclick="pressKey('enter')">
+            OK
+          </button>
+        </div>
+
+        <div class="slot-container">
+          <div class="card-reader">
+            <span>INSERT CARD</span>
+            <div class="slot-light"></div>
+          </div>
+          <div class="cash-dispenser">
+            <span>CASH TRAY</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="receipt-area" class="receipt-hidden">
+      <div class="receipt-paper">
+        <div class="receipt-header">
+          <h3>ATM TRANSACTION</h3>
+          <p>--------------------------------</p>
+        </div>
+        <div class="receipt-body">
+          <div class="r-row">
+            <span class="r-label">TERMINAL #</span
+            ><span class="r-val">8842-X</span>
+          </div>
+          <div class="r-row">
+            <span class="r-label">SEQ #</span
+            ><span class="r-val" id="r-seq">0000</span>
+          </div>
+          <div class="r-row date-row">
+            <span class="r-label">DATE</span
+            ><span class="r-val" id="r-date"></span>
+          </div>
+
+          <p style="margin: 10px 0; border-bottom: 1px dashed #000"></p>
+
+          <div class="r-row">
+            <span class="r-label">CUSTOMER</span
+            ><span class="r-val" id="r-name">JOHN DOE</span>
+          </div>
+          <div class="r-row">
+            <span class="r-label">CARD</span
+            ><span class="r-val">**** **** **** 5698</span>
+          </div>
+
+          <br />
+
+          <div class="r-row">
+            <span class="r-label">REQUESTED AMT</span
+            ><span class="r-val">$<span id="r-amount">0.00</span></span>
+          </div>
+          <div class="r-row">
+            <span class="r-label">TERMINAL FEE</span
+            ><span class="r-val">$1.25</span>
+          </div>
+
+          <div class="r-row total-row">
+            <span class="r-label">TOTAL DEBIT</span
+            ><span class="r-val">$<span id="r-total">0.00</span></span>
+          </div>
+
+          <br />
+
+          <div class="r-row" style="font-weight: bold">
+            <span class="r-label">AVAIL BAL</span
+            ><span class="r-val">$<span id="r-balance">0.00</span></span>
+          </div>
+        </div>
+        <div class="receipt-footer">
+          <p>--------------------------------</p>
+          <p>THANK YOU FOR BANKING</p>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

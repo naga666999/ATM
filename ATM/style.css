@@ -1,0 +1,419 @@
+:root {
+  /* --- NEW GRADIENT PALETTE --- */
+  /* Animated Background Gradient Colors */
+  --bg-gradient: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+
+  /* Dark Glass Panel with a hint of purple */
+  --glass-panel: rgba(16, 18, 27, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.1);
+
+  /* Screen Colors (Deep Void + Neon Text) */
+  --screen-bg: radial-gradient(circle, #1a1a2e 0%, #000000 100%);
+  --screen-text: #00fff2; /* Cyan */
+  --screen-accent: #ff00ff; /* Magenta */
+  --text-white: #ffffff;
+
+  /* Button Gradients */
+  --btn-bg: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.05),
+    rgba(255, 255, 255, 0.01)
+  );
+  --btn-border: rgba(255, 255, 255, 0.2);
+  --btn-hover: linear-gradient(
+    90deg,
+    #00c9ff 0%,
+    #92fe9d 100%
+  ); /* Green-Blue Hover */
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Rajdhani", sans-serif;
+}
+
+body {
+  /* Animated Gradient Background */
+  background: var(--bg-gradient);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-white);
+  overflow: hidden;
+}
+
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* --- MAIN DASHBOARD CONTAINER --- */
+.atm-dashboard {
+  background: var(--glass-panel);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 30px;
+  padding: 30px;
+  width: 95%;
+  max-width: 1400px;
+  display: flex;
+  gap: 40px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+}
+
+/* --- LEFT SECTION --- */
+.dashboard-left {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-header {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 25px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 10px;
+  letter-spacing: 2px;
+  color: white;
+}
+
+/* Gradient Text Effect */
+.gradient-text {
+  background: linear-gradient(to right, #00f260, #0575e6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.screen-interface-wrapper {
+  display: flex;
+  gap: 25px;
+  height: 100%;
+}
+
+.side-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  min-width: 180px;
+}
+
+.action-btn {
+  padding: 18px 20px;
+  background: var(--btn-bg);
+  border: 1px solid var(--btn-border);
+  color: var(--text-white);
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 10px;
+  text-align: left;
+  transition: 0.3s;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+}
+
+.action-btn::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 5px;
+  background: transparent;
+  transition: 0.3s;
+}
+
+.action-btn:hover {
+  background: #ffffff; /* Fallback */
+  background: var(--btn-hover);
+  color: #000;
+  border-color: transparent;
+  box-shadow: 0 0 20px rgba(0, 201, 255, 0.6);
+  transform: translateX(5px);
+}
+
+.spacer {
+  flex-grow: 1;
+}
+.back-btn {
+  border-color: #aaa;
+  color: #ccc;
+}
+.exit-btn {
+  border-color: #ff4757;
+  color: #ff4757;
+}
+.exit-btn:hover {
+  background: linear-gradient(90deg, #ff416c, #ff4b2b);
+  color: white;
+}
+
+/* --- DIGITAL SCREEN --- */
+.digital-screen {
+  flex-grow: 1;
+  height: 400px;
+  background: var(--screen-bg);
+  border: 2px solid #333;
+  border-radius: 15px;
+  box-shadow: inset 0 0 80px rgba(0, 0, 0, 1);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scan-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: rgba(0, 255, 242, 0.3);
+  box-shadow: 0 0 10px rgba(0, 255, 242, 0.5);
+  animation: scan 4s linear infinite;
+  pointer-events: none;
+}
+@keyframes scan {
+  0% {
+    top: 0%;
+  }
+  100% {
+    top: 100%;
+  }
+}
+
+.screen-content {
+  z-index: 2;
+  text-align: center;
+  width: 100%;
+  padding: 20px;
+}
+.screen-content h2 {
+  font-size: 3rem;
+  background: linear-gradient(to right, #00c6ff, #0072ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 10px;
+}
+.screen-content p {
+  font-size: 1.3rem;
+  color: #ccc;
+  letter-spacing: 1px;
+}
+.pin-display {
+  font-size: 4rem;
+  letter-spacing: 15px;
+  margin-top: 30px;
+  font-family: monospace;
+  color: var(--screen-accent);
+  text-shadow: 0 0 15px var(--screen-accent);
+}
+
+/* --- RIGHT SECTION (Controls) --- */
+.dashboard-right {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 20px;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.panel-label {
+  color: #888;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+  letter-spacing: 3px;
+  font-weight: bold;
+}
+
+.keypad-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.key {
+  width: 75px;
+  height: 75px;
+  border-radius: 15px;
+  border: none;
+  background: linear-gradient(145deg, #1e202c, #161720);
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 5px 5px 10px #0b0c11, -5px -5px 10px #2b2e3f;
+  transition: 0.1s;
+}
+.key:active {
+  transform: scale(0.95);
+  box-shadow: inset 5px 5px 10px #0b0c11, inset -5px -5px 10px #2b2e3f;
+}
+.action-clear {
+  background: linear-gradient(145deg, #ff4b2b, #ff416c);
+  box-shadow: 0 5px 15px rgba(255, 65, 108, 0.4);
+}
+.action-enter {
+  background: linear-gradient(145deg, #11998e, #38ef7d);
+  box-shadow: 0 5px 15px rgba(56, 239, 125, 0.4);
+}
+
+.slot-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.card-reader,
+.cash-dispenser {
+  background: #1a1c29;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #777;
+  border: 1px solid #333;
+  position: relative;
+}
+.slot-light {
+  width: 60%;
+  height: 3px;
+  background: #00f260;
+  margin: 8px auto;
+  border-radius: 2px;
+  box-shadow: 0 0 10px #00f260;
+  animation: blink 2s infinite;
+}
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+.cash-dispenser {
+  border-bottom: 5px solid #000;
+}
+
+/* --- MOBILE RESPONSIVE --- */
+@media (max-width: 1000px) {
+  .atm-dashboard {
+    flex-direction: column;
+    max-width: 600px;
+    height: auto;
+    overflow-y: auto;
+    padding: 20px;
+  }
+  body {
+    overflow: auto;
+    padding: 20px 0;
+  }
+  .screen-interface-wrapper {
+    flex-direction: column;
+  }
+  .digital-screen {
+    height: 250px;
+    width: 100%;
+  }
+  .side-buttons {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    gap: 10px;
+  }
+  .action-btn {
+    flex: 1 1 40%;
+    font-size: 0.9rem;
+    padding: 12px;
+  }
+  .spacer {
+    display: none;
+  }
+  .dashboard-right {
+    width: 100%;
+    margin-top: 20px;
+  }
+}
+
+/* --- RECEIPT PRINTING STYLES --- */
+.receipt-hidden {
+  display: none;
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #receipt-area,
+  #receipt-area * {
+    visibility: visible;
+  }
+
+  #receipt-area {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex !important;
+    justify-content: center;
+    align-items: flex-start;
+    background: white;
+    padding-top: 50px;
+    z-index: 9999;
+  }
+
+  .receipt-paper {
+    width: 350px;
+    font-family: "Courier New", monospace;
+    text-transform: uppercase;
+    color: #000;
+    padding: 20px;
+    border: none;
+  }
+  .receipt-header,
+  .receipt-footer {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .r-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+  }
+  .total-row {
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-top: 15px;
+    border-top: 1px dashed #000;
+    padding-top: 10px;
+  }
+}
